@@ -1,7 +1,6 @@
 import random
 import json
 import boto3
-from collections import Counter
 
 class ParkingLot:
     def __init__(self, square_footage, spot_length=8, spot_width=12):
@@ -20,9 +19,9 @@ class ParkingLot:
             print(f"Car with license plate {car.license_plate} parked successfully in spot {spot_num}.")
 
             return True
-        # else:
-        #     # print(f"Spot {spot_num} is occupied. Trying to park in another spot...")
-        #     return False
+        else:
+            # print(f"Spot {spot_num} is occupied. Trying to park in another spot...")
+            return False
 
     def get_car_spot_map(self):
         return self.car_spot_map
@@ -46,10 +45,7 @@ def main(cars, parking_lot):
         while not parked:
             spot_num = random.randint(0, parking_lot.num_spots - 1)
             parked = parking_lot.park(car, spot_num)
-            if not parked:
-                continue
-            else:
-                break
+            
 
 
 if __name__ == '__main__':
